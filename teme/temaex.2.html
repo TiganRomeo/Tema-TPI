@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Intersecția a două mulțimi</title>
+	<style>
+		body {
+			background-color: black;
+			color: white;
+			font-family: Arial, sans-serif;
+			font-size: 18px;
+			line-height: 1.5;
+			padding: 20px;
+			margin: 0;
+			box-sizing: border-box;
+		}
+
+		h1 {
+			font-size: 36px;
+			margin-top: 0;
+			color: yellow;
+		}
+
+		input[type="text"] {
+			padding: 10px;
+			font-size: 18px;
+			border-radius: 5px;
+			border: none;
+			background-color: white;
+			color: black;
+			box-shadow: 0 0 5px rgba(0,0,0,0.3);
+			margin-bottom: 20px;
+		}
+
+		button {
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: white;
+			font-size: 18px;
+			border-radius: 5px;
+			border: none;
+			cursor: pointer;
+			transition: all 0.3s ease-in-out;
+		}
+
+		button:hover {
+			background-color: #3e8e41;
+		}
+
+		#result {
+			font-size: 24px;
+			font-weight: bold;
+			margin-top: 20px;
+		}
+	</style>
+	<script>
+		function intersect() {
+			// Obține elementele din cele două câmpuri de intrare
+			var set1 = document.getElementById("set1").value;
+			var set2 = document.getElementById("set2").value;
+
+			// Converteste elementele din string in array
+			set1 = set1.split(",");
+			set2 = set2.split(",");
+
+			// Elimină spațiile albe inutile din elemente
+			set1 = set1.map(function(x){return x.trim()});
+			set2 = set2.map(function(x){return x.trim()});
+
+			// Calculează intersecția celor două mulțimi
+			var intersection = set1.filter(function(x){return set2.indexOf(x) != -1});
+
+			// Afișează rezultatul
+			document.getElementById("result").innerHTML = intersection.join(", ");
+		}
+	</script>
+</head>
+<body>
+	<h1>Intersecția a două mulțimi</h1>
+	<p>Introduceți elementele mulțimii 1 (separate prin virgulă): <input type="text" id="set1"></p>
+	<p>Introduceți elementele mulțimii 2 (separate prin virgulă): <input type="text" id="set2"></p>
+	<button onclick="intersect()">Intersecție</button>
+	<p>Intersecția mulțimii 1 și mulțimii 2: <span id="result"></span></p>
+</body>
+</html>

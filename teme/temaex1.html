@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cronometru cu numărătoare inversă</title>
+    <!-- Add icon library -->
+    <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+     body {
+     background-color: pink;
+     }
+      h1 {
+        color: tomato;
+        text-shadow: 0 0 5px rgba(255, 0, 0, 1);
+      }
+      .btn {
+        background-color: pink;
+        padding: 12px 16px;
+        font-size: 16px;
+      }
+      .btn:hover {
+        background-color: red;
+      }
+      .gliding {
+        position: relative;
+        animation-name: gliding;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+      }
+      u {
+        position: relative;
+        animation-name: slideIn;
+        animation-duration: 2s;
+      }
+      @keyframes gliding {
+        0% {
+          text-shadow: 0 0 5px rgba(255, 0, 0, 1);
+          left: 0;
+        }
+        50% {
+          text-shadow: 0 0 10px rgba(255, 0, 0, 1);
+          left: 10px;
+        }
+        100% {
+          text-shadow: 0 0 5px rgba(255, 0, 0, 1);
+          left: 0;
+        }
+      }
+      @keyframes slideIn {
+        from {
+          left: -100%;
+        }
+        to {
+          left: 0%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="gliding">Cronometru cu numărătoare inversă</h1>
+    <p><u>Acesta este un cronometru cu numărătoare inversă care va fi setat la:</p></u>
+    <input type="number" id="minute" placeholder="Minute">
+    <input type="number" id="secunde" placeholder="Secunde">
+    <button onclick="startTimer()" class="btn">
+     <p>Start</p>
+      <i class="fa fa-toggle-on"></i>
+    </button>
+    <button onclick="stopTimer()" class="btn">
+    <p>Stop</p>
+      <i class="fa fa-toggle-off"></i>
+    </button>
+    <p id="timer">00:00</p>
+
+    <script>
+      var intervalId;
+      function startTimer() {
+        var minute = document.getElementById("minute").value;
+        var secunde = document.getElementById("secunde").value;
+        var timer = minute * 60 + secunde * 1;
+        intervalId = setInterval(function() {
+          var minutes = Math.floor(timer / 60);
+          var seconds = timer - minutes * 60;
+          var minuteString = minutes < 10 ? "0" + minutes : minutes;
+          var secondString = seconds < 10 ? "0" + seconds : seconds;
+          document.getElementById("timer").innerHTML = minuteString + ":" + secondString;
+          timer--;
+          if (timer < 0) {
+            clearInterval(intervalId);
+            alert("Timpul a expirat!");
+          }
+        }, 1000);
+      }
+      function stopTimer() {
+        clearInterval(intervalId);
+        document.getElementById("timer").innerHTML = "00:00";
+        document.getElementById("minute").value = "";
+      }
+    </script>
+  </body>
+</html>

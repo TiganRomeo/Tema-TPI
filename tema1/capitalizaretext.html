@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Capitalizare text</title>
+  </head>
+  <body>
+    <h1>Capitalizare text</h1>
+    <label for="text">Introduceți textul:</label>
+    <input type="text" id="text"><br>
+    <button onclick="capitalize()">Capitalizare</button>
+    <p id="result"></p>
+
+    <script>
+      function capitalize() {
+        var text = document.getElementById("text").value;
+        var words = text.split(" ");
+        var capitalizedText = "";
+        for (var i = 0; i < words.length; i++) {
+          var word = words[i];
+          var capitalizedWord = word.charAt(0).toUpperCase() + word.slice(1);
+          capitalizedText += capitalizedWord + " ";
+        }
+        document.getElementById("result").innerHTML = capitalizedText;
+      }
+    </script>
+  </body>
+</html>
